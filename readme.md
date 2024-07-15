@@ -103,6 +103,12 @@
 - <img width="1083" alt="Screenshot 2024-07-13 at 11 00 30 PM" src="https://github.com/user-attachments/assets/a5c5e433-770c-4141-afe0-bb7a29b7ba0d">
 - <img width="1096" alt="Screenshot 2024-07-13 at 11 01 00 PM" src="https://github.com/user-attachments/assets/e81b0f01-dad6-4c65-9a4c-922d1a1f754f">
 
+
+## Categorize on basis of tags
+<img width="1010" alt="Screenshot 2024-07-15 at 11 17 57 PM" src="https://github.com/user-attachments/assets/3c9da697-a8d0-4107-aba1-66f4eff9a6f5">
+<img width="1020" alt="Screenshot 2024-07-15 at 11 25 21 PM" src="https://github.com/user-attachments/assets/5e85ca7f-68cb-481a-94ca-68d1f3c9aac8">
+
+
 ## Permission checks and token expiration
 
 - Project Permissions: Only the project creator has the authority to update the project. Additionally, only the project creator can view a list of their projects.
