@@ -99,6 +99,7 @@ class SubTaskViewSet(viewsets.ModelViewSet):
             SubTask.objects.filter(
                 models.Q(owner=self.request.user)
                 | models.Q(task__assigned_to=self.request.user)
+                | models.Q(task__owner=self.request.user)
                 | models.Q(is_private=False),
                 task=task_id,
             )
