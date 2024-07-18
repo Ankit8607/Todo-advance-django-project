@@ -22,6 +22,9 @@
 5. if first step fails run this command ```python3 -m venv venv ```
 6. then try step 1
 
+Before starting the project make sure have database first
+1. python manage.py makemigrations
+2. python manage.py migrate
 
 ## Create Users
 
