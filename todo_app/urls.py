@@ -83,10 +83,10 @@ urlpatterns = [
         name="tag-detail",
     ),
     path(
-        "public-projects/<uuid:pk>/",
+        "public-projects/",
         PublicProjectViewSet.as_view(
             {
-                "get": "retrieve",
+                "get": "list",
             }
         ),
         name="public-project-detail",

@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from django.contrib.auth.models import User
+from django.contrib.auth.password_validation import validate_password
 from todo_app.models import Project, Tag, Task, SubTask
 
 
@@ -8,6 +9,10 @@ class UserSerializer(serializers.ModelSerializer):
         model = User
         fields = ["id", "username", "password", "email"]
         extra_kwargs = {"password": {"write_only": True}}
+
+    def validate_password(self, value):
+        validate_password(value)
+        return value
 
     def create(self, validated_data):
         try:
@@ -114,7 +119,7 @@ class TaskSerializer(serializers.ModelSerializer):
                 "You do not have permission to update this task."
             )
         try:
-            tags_data = validated_data.pop("tags", [])
+            tags_data = validated_data.pop("tags", None)
             for attr, value in validated_data.items():
                 setattr(instance, attr, value)
 
@@ -132,14 +137,12 @@ class TaskSerializer(serializers.ModelSerializer):
 
                 if instance.is_completed:
                     instance.check_completion()
-                    
-            instance.tags.clear()
 
-            for tag_data in tags_data:
-                tag, created = Tag.objects.get_or_create(
-                    owner=self.context["request"].user, **tag_data
-                )
-                instance.tags.add(tag)
+            if tags_data is not None:
+                instance.tags.clear()
+                for tag_data in tags_data:
+                    tag, created = Tag.objects.get_or_create(owner=self.context["request"].user, **tag_data)
+                    instance.tags.add(tag)
 
             instance.save()
             return instance
@@ -179,12 +182,13 @@ class SubTaskSerializer(serializers.ModelSerializer):
 
     def update(self, instance, validated_data):
         request_user = self.context["request"].user
-        if instance.owner != request_user and instance.task.assigned_to != request_user:
+        task = self.context["task"]
+        if instance.owner != request_user and instance.task.assigned_to != request_user and task.owner != request_user:
             raise serializers.ValidationError(
                 "You do not have permission to update this subtask."
             )
         try:
-            tags_data = validated_data.pop("tags", [])
+            tags_data = validated_data.pop("tags", None)
             for attr, value in validated_data.items():
                 setattr(instance, attr, value)
 
@@ -194,14 +198,15 @@ class SubTaskSerializer(serializers.ModelSerializer):
                 if instance.is_completed:
                     instance.task.check_completion()
 
+            if tags_data is not None:
+                instance.tags.clear()
+                for tag_data in tags_data:
+                    tag, created = Tag.objects.get_or_create(
+                        owner=self.context["request"].user, **tag_data
+                    )
+                    instance.tags.add(tag)
+                    
             instance.save()
-            instance.tags.clear()
-            for tag_data in tags_data:
-                tag, created = Tag.objects.get_or_create(
-                    owner=self.context["request"].user, **tag_data
-                )
-                instance.tags.add(tag)
-
             return instance
         except Exception as e:
             raise serializers.ValidationError(f"Error updating subtask: {str(e)}")
