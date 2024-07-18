@@ -96,7 +96,8 @@
 ## Public Projects
 
 - Endpoint: `localhost:8000/api/public-projects/<uuid of project>/`
-- <img width="1109" alt="Screenshot 2024-07-15 at 12 47 23 PM" src="https://github.com/user-attachments/assets/60b54afe-296a-472e-a5a8-ac9114d820f6">
+<img width="1005" alt="Screenshot 2024-07-18 at 5 59 51 PM" src="https://github.com/user-attachments/assets/a59730e2-e00a-4c1a-9d6c-b6543a290c05">
+
 
 ## Searching 
 
