@@ -35,6 +35,14 @@
 - Endpoint: `localhost:8000/api/token/`
 - <img width="1110" alt="Screenshot 2024-07-13 at 10 19 29 PM" src="https://github.com/user-attachments/assets/520847d3-26e8-49bc-9154-340963e79c20">
 
+
+## Login ( Refresh Token )
+
+- Endpoint: `localhost:8000/api/token/refresh`
+<img width="1010" alt="Screenshot 2024-07-18 at 6 03 49 PM" src="https://github.com/user-attachments/assets/098f9c3b-0481-489c-84df-519d11be62ee">
+
+
+
 ## Create tags
 - Endpoint: `localhost:8000/api/tags/`
 - <img width="1080" alt="Screenshot 2024-07-13 at 10 21 24 PM" src="https://github.com/user-attachments/assets/36e6e008-4786-40cf-a720-58a83d8ff931">
@@ -95,7 +103,7 @@
 
 ## Public Projects
 
-- Endpoint: `localhost:8000/api/public-projects/<uuid of project>/`
+- Endpoint: `localhost:8000/api/public-projects/`
 <img width="1005" alt="Screenshot 2024-07-18 at 5 59 51 PM" src="https://github.com/user-attachments/assets/a59730e2-e00a-4c1a-9d6c-b6543a290c05">
 
 
